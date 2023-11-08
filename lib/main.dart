@@ -4,15 +4,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 const firebaseConfig = FirebaseOptions(
-  apiKey: "AIzaSyAooLwSI1t94F4fWoNU-w3Xq7vmzufgER8",
-  authDomain: "todo-list-f6ea1.firebaseapp.com",
-  projectId: "todo-list-f6ea1",
-  storageBucket: "todo-list-f6ea1.appspot.com",
-  messagingSenderId: "301455416677",
-  appId: "1:301455416677:web:58bb92ca1e34019f78d58c",
-);
+    apiKey: "AIzaSyAHI077Xa2xCA0Z25-W-xjOrcN3Yyg0cBY",
+    authDomain: "teste-vitoria.firebaseapp.com",
+    projectId: "teste-vitoria",
+    storageBucket: "teste-vitoria.appspot.com",
+    messagingSenderId: "932456421799",
+    appId: "1:932456421799:web:03afc2bd96dce5eef33e82");
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,14 +35,16 @@ class MyApp extends StatelessWidget {
 class TaskList extends StatelessWidget {
   final firestore = FirebaseFirestore.instance;
 
+  TaskList({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Todo List"),
+        title: const Text("Todo List"),
         actions: [
           IconButton(
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
             tooltip: 'Logout',
             onPressed: () {
               FirebaseAuth.instance.signOut();
@@ -51,7 +54,7 @@ class TaskList extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () => Navigator.of(context).pushNamed("/cadastro"),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -60,7 +63,7 @@ class TaskList extends StatelessWidget {
             .where('user', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
             .snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (!snapshot.hasData) return CircularProgressIndicator();
+          if (!snapshot.hasData) return const CircularProgressIndicator();
           if (snapshot.hasError) return Text(snapshot.error.toString());
           var docs = snapshot.data!.docs;
           return ListView(
@@ -90,8 +93,10 @@ class TaskList extends StatelessWidget {
 
 class TaskCreate extends StatelessWidget {
   final firestore = FirebaseFirestore.instance;
-  TextEditingController txtCtrl = TextEditingController();
-  TextEditingController categoriaCtrl = TextEditingController();
+  final TextEditingController txtCtrl = TextEditingController();
+  final TextEditingController categoriaCtrl = TextEditingController();
+
+  TaskCreate({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,17 +107,17 @@ class TaskCreate extends StatelessWidget {
             children: [
               TextField(
                 controller: txtCtrl,
-                decoration: InputDecoration(labelText: "Task"),
+                decoration: const InputDecoration(labelText: "Task"),
               ),
               TextField(
                 controller: categoriaCtrl,
-                decoration: InputDecoration(labelText: "Categoria"),
+                decoration: const InputDecoration(labelText: "Categoria"),
               ),
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 width: double.infinity,
                 child: ElevatedButton(
-                  child: Text("Salvar"),
+                  child: const Text("Salvar"),
                   onPressed: () {
                     firestore.collection('tasks').add({
                       "name": txtCtrl.text,
@@ -131,31 +136,33 @@ class TaskCreate extends StatelessWidget {
 }
 
 class Login extends StatelessWidget {
-  TextEditingController emailTxt = TextEditingController();
-  TextEditingController senhaTxt = TextEditingController();
+  final TextEditingController emailTxt = TextEditingController();
+  final TextEditingController senhaTxt = TextEditingController();
+
+  Login({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fazer Login'),
+        title: const Text('Fazer Login'),
       ),
       body: SafeArea(
         child: Column(
           children: [
             TextField(
               controller: emailTxt,
-              decoration: InputDecoration(labelText: "E-mail"),
+              decoration: const InputDecoration(labelText: "E-mail"),
             ),
             TextField(
               controller: senhaTxt,
-              decoration: InputDecoration(labelText: "Senha"),
+              decoration: const InputDecoration(labelText: "Senha"),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               width: double.infinity,
               child: ElevatedButton(
-                child: Text("Entrar"),
+                child: const Text("Entrar"),
                 onPressed: () async {
                   try {
                     UserCredential userCredential =
@@ -166,7 +173,7 @@ class Login extends StatelessWidget {
                     Navigator.of(context).pushNamed('/lista');
                   } catch (e) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text('E-mail ou Senha inválidos.'),
                         backgroundColor: Colors.red,
                       ),
@@ -177,7 +184,7 @@ class Login extends StatelessWidget {
               ),
             ),
             TextButton(
-              child: Text("Não tem conta, registre-se"),
+              child: const Text("Não tem conta, registre-se"),
               onPressed: () {
                 Navigator.of(context).pushNamed('/register');
               },
@@ -190,31 +197,33 @@ class Login extends StatelessWidget {
 }
 
 class Register extends StatelessWidget {
-  TextEditingController txtCtrl = TextEditingController();
-  TextEditingController txtEmail = TextEditingController();
+  final TextEditingController txtCtrl = TextEditingController();
+  final TextEditingController txtEmail = TextEditingController();
+
+  Register({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registrar-se'),
+        title: const Text('Registrar-se'),
       ),
       body: SafeArea(
         child: Column(
           children: [
             TextField(
               controller: txtEmail,
-              decoration: InputDecoration(labelText: "E-mail"),
+              decoration: const InputDecoration(labelText: "E-mail"),
             ),
             TextField(
               controller: txtCtrl,
-              decoration: InputDecoration(labelText: "Senha"),
+              decoration: const InputDecoration(labelText: "Senha"),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               width: double.infinity,
               child: ElevatedButton(
-                child: Text("Registrar"),
+                child: const Text("Registrar"),
                 onPressed: () async {
                   if (txtCtrl.text.length >= 6) {
                     try {
@@ -230,7 +239,7 @@ class Register extends StatelessWidget {
                     }
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
+                      const SnackBar(
                         content: Text(
                           'Senha inválida. Deve conter pelo menos 6 caracteres.',
                         ),
@@ -251,5 +260,5 @@ class Register extends StatelessWidget {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: firebaseConfig);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
