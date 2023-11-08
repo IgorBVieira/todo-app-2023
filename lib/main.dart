@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ! AV1
 // Widget para exibir a lista de tarefas
 class TaskList extends StatelessWidget {
   // Instância do Firestore
@@ -117,6 +118,7 @@ class TaskList extends StatelessWidget {
   }
 }
 
+// ! AV1
 // Widget para criar uma nova tarefa
 class TaskCreate extends StatelessWidget {
   // Instância do Firestore
@@ -172,6 +174,9 @@ class TaskCreate extends StatelessWidget {
   }
 }
 
+
+
+// ! AV2
 // Widget para fazer o login
 class Login extends StatelessWidget {
   // Controllers para os campos de texto
@@ -245,6 +250,8 @@ class Login extends StatelessWidget {
   }
 }
 
+
+// ! AV2
 // Widget para registrar-se
 class Register extends StatelessWidget {
   // Controllers para os campos de texto
