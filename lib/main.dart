@@ -4,12 +4,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 const firebaseConfig = FirebaseOptions(
-  apiKey: "AIzaSyAJ0ADhleMm0YwvvNrF22kIkHJCpgIOjak",
-  authDomain: "lp3-vitoria.firebaseapp.com",
-  projectId: "lp3-vitoria",
-  storageBucket: "lp3-vitoria.appspot.com",
-  messagingSenderId: "535933998918",
-  appId: "1:535933998918:web:dc88f65ece924aaf6db747");
+    apiKey: "AIzaSyAJ0ADhleMm0YwvvNrF22kIkHJCpgIOjak",
+    authDomain: "lp3-vitoria.firebaseapp.com",
+    projectId: "lp3-vitoria",
+    storageBucket: "lp3-vitoria.appspot.com",
+    messagingSenderId: "535933998918",
+    appId: "1:535933998918:web:dc88f65ece924aaf6db747");
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -164,8 +165,7 @@ class Login extends StatelessWidget {
                 child: const Text("Entrar"),
                 onPressed: () async {
                   try {
-                    UserCredential userCredential =
-                        await FirebaseAuth.instance.signInWithEmailAndPassword(
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: emailTxt.text,
                       password: senhaTxt.text,
                     );
@@ -226,8 +226,7 @@ class Register extends StatelessWidget {
                 onPressed: () async {
                   if (txtCtrl.text.length >= 6) {
                     try {
-                      UserCredential userCredential = await FirebaseAuth
-                          .instance
+                      await FirebaseAuth.instance
                           .createUserWithEmailAndPassword(
                         email: txtEmail.text,
                         password: txtCtrl.text,
