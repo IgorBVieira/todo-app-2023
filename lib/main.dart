@@ -9,7 +9,7 @@ const firebaseConfig = FirebaseOptions(
   projectId: "lp3-vitoria",
   storageBucket: "lp3-vitoria.appspot.com",
   messagingSenderId: "535933998918",
-  appId: "1:535933998918:web:dc88f65ece924aaf6db747")
+  appId: "1:535933998918:web:dc88f65ece924aaf6db747");
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
