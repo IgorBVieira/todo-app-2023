@@ -1,3 +1,3 @@
-# flutter_vitoria_av3
+# Todo App
 
-A new Flutter project.
+Um App para criar e acompanhar tarefas em Flutter (dart) utilizando Firebase como Banco de dados e Auth.
